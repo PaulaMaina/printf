@@ -49,7 +49,7 @@ int printnhex(va_list print_args, char *buf_ptr, unsigned int buf_index);
 int printnupx(va_list print_args, char *buf_ptr, unsigned int buf_index);
 int printsint(va_list print_args, char *buf_ptr, unsigned int buf_index);
 int (*fetch_print_func(const char *str, int index))(va_list char *, unsigned int);
-int eval_print_func(const char *str, int ind);
+int eval_print_func(const char *arg_id, int ind);
 unsigned int buf_handler(char *buff, char s, unsigned int buf_num);
 int print_buff(char *buff, unsigned int buf_num);
 char *print_bin_array(char *bin, long int n, int neg_int, int lim);
