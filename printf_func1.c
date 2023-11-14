@@ -170,7 +170,7 @@ int printf_bin(va_list args, char buf[],
 	for (a = 0, total = 0, tally = 0; a < 32; a++)
 	{
 		total += b[a];
-		if (total || a == 32)
+		if (total || a == 31)
 		{
 			char c = '0' + b[a];
 

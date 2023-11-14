@@ -19,7 +19,7 @@
 
 /**
  * struct print - struct print
- * @fmrt: format
+ * @fmt: format
  * @func: associated function
  */
 

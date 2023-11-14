@@ -76,7 +76,7 @@ int write_int(int neg, int index, char buf[],
 }
 /**
  * write_nums - prints numbers using a buffer
- * @index: starting point
+ * @bi: starting point
  * @buf: buffer array
  * @flag: compute flags
  * @wid: width
@@ -88,20 +88,19 @@ int write_int(int neg, int index, char buf[],
  * Return: number of prtined characters
  */
 
-int write_nums(int index, char buf[],
+int write_nums(int bi, char buf[],
 		int flag, int wid, int prec, int len, char add, char ch_ext)
 {
 	int a, start_add = 1;
 
-	if (prec == 0 && index == BUF_SIZE - 2 && buf[index] == '0'
-			&& wid == 0)
+	if (prec == 0 && bi == BUF_SIZE - 2 && buf[bi] == '0' && wid == 0)
 		return (0);
-	if (prec == 0 && index == BUF_SIZE - 2 && buf[index] == '0')
-		buf[index] = add = ' ';
+	if (prec == 0 && bi == BUF_SIZE - 2 && buf[bi] == '0')
+		buf[bi] = add = ' ';
 	if (prec > 0 && prec < len)
 		add = ' ';
 	while (prec > len)
-		buf[--index] = '0', len++;
+		buf[--bi] = '0', len++;
 	if (ch_ext != 0)
 		len++;
 	if (wid > len)
@@ -112,28 +111,26 @@ int write_nums(int index, char buf[],
 		if (flag & P_MINUS && add == ' ')
 		{
 			if (ch_ext)
-				buf[--index] = ch_ext;
-			return (write(1, &buf[index], len) +
-					write(1, &buf[1], a - 1));
+				buf[--bi] = ch_ext;
+			return (write(1, &buf[bi], len) + write(1, &buf[1], a - 1));
 		}
 		else if (!(flag & P_MINUS) && add == ' ')
 		{
 			if (ch_ext)
-				buf[--index] = ch_ext;
-			return (write(1, &buf[1], a - 1) +
-					write(1, &buf[index], len));
+				buf[--bi] = ch_ext;
+			return (write(1, &buf[1], a - 1) + write(1, &buf[bi], len));
 		}
 		else if (!(flag & P_MINUS) && add == ' ')
 		{
 			if (ch_ext)
 				buf[--start_add] = ch_ext;
-		return (write(1, &buf[start_add], a - start_add) +
-				write(1, &buf[index], len - (1 - start_add)));
+			return (write(1, &buf[start_add], a - start_add) +
+				write(1, &buf[bi], len - (1 - start_add)));
 		}
 	}
 	if (ch_ext)
-		buf[--index] = ch_ext;
-	return (write(1, &buf[index], len));
+		buf[--bi] = ch_ext;
+	return (write(1, &buf[bi], len));
 }
 
 /**
