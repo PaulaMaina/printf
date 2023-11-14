@@ -36,7 +36,7 @@ int _printf(const char *format, ...)
 			wid = get_wid(format, &a, list);
 			prec = get_prec(format, &a, list);
 			size = get_size(format, &a);
-			a++;
+			++a;
 			char_print = print_handler(format, &a, list, buf,
 					flag, wid, prec, size);
 			if (char_print == -1)

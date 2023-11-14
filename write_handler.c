@@ -30,10 +30,11 @@ int write_char(char c, char buf[], int flag, int wid, int prec, int size)
 	{
 		buf[BUF_SIZE - 1] = '\0';
 		for (a = 0; a < wid - 1; a++)
-			buf[BUF_SIZE - a - 1] = add;
+			buf[BUF_SIZE - a - 2] = add;
 
 		if (flag & P_MINUS)
-			return (write(1, &buf[BUF_SIZE - a - 1], wid - 1));
+			return (write(1, &buf[0], 1) +
+				       write(1, &buf[BUF_SIZE - a - 1], wid - 1));
 		else
 			return (write(1, &buf[BUF_SIZE - a - 1], wid - 1)
 					+ write(1, &buf[0], 1));
@@ -112,7 +113,15 @@ int write_nums(int index, char buf[],
 		{
 			if (ch_ext)
 				buf[--index] = ch_ext;
-			return (write(1, &buf[1], a - 1) + write(1, &buf[index], len));
+			return (write(1, &buf[index], len) +
+					write(1, &buf[1], a - 1));
+		}
+		else if (!(flag & P_MINUS) && add == ' ')
+		{
+			if (ch_ext)
+				buf[--index] = ch_ext;
+			return (write(1, &buf[1], a - 1) +
+					write(1, &buf[index], len));
 		}
 		else if (!(flag & P_MINUS) && add == ' ')
 		{
@@ -182,7 +191,7 @@ int write_ptr(char buf[], int index, int len,
 	buf[--index] = 'x';
 	buf[--index] = '0';
 	if (ch_ext)
-		buf[index] = ch_ext;
+		buf[--index] = ch_ext;
 	return (write(1, &buf[index], BUF_SIZE - index - 1));
 }
 
@@ -232,7 +241,7 @@ int write_unsign(int neg, int index, char buf[],
 		if (flag & P_MINUS)
 		{
 			return (write(1, &buf[index], len) +
-					write(1, &buf[index], a));
+					write(1, &buf[0], a));
 		}
 		else
 		{

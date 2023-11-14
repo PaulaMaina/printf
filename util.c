@@ -49,7 +49,7 @@ int append_hex(char code, char buf[], int index)
 
 int digit(char ch)
 {
-	if (ch >= '0' && ch <= '0')
+	if (ch >= '0' && ch <= '9')
 		return (1);
 
 	return (0);

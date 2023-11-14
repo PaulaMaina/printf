@@ -141,7 +141,7 @@ int printf_hexc(va_list args, char to_map[], char buf[],
 		n /= 16;
 	}
 
-	if (flag && P_HASH && num != 0)
+	if (flag & P_HASH && num != 0)
 	{
 		buf[a--] = ch_flag;
 		buf[a--] = '0';

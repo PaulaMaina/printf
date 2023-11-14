@@ -147,7 +147,7 @@ int printf_rot13(va_list args, char buf[],
 	char *s;
 	unsigned int a, b;
 	int tally = 0;
-	char i[] = "ABCDEEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	char i[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 	char o[] = "NOPQRSTUVWXYZABCEDFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 
 	s = va_arg(args, char *);

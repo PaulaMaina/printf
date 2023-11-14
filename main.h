@@ -25,12 +25,12 @@
 
 typedef struct print
 {
-	char fmrt;
+	char fmt;
 	int (*func)(va_list, char[], int, int, int, int);
 } print_t;
 
 int _printf(const char *format, ...);
-int print_handler(const char *fmrt, int *p,
+int print_handler(const char *fmt, int *p,
 va_list list, char buf[], int flag, int wid, int prec, int size);
 
 int printf_char(va_list args, char buf[],
